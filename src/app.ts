@@ -1,9 +1,11 @@
 import express from 'express'
 import 'dotenv/config'
+import deserializeUser from './middlewares/deserializeUser'
 import routes from './routes'
 
 const app = express()
 
+app.use(deserializeUser)
 app.use(express.json())
 
 app.listen(5000, () => {
