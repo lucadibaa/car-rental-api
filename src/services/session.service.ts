@@ -51,7 +51,7 @@ export const reIssueAccessToken = async ({ refreshToken }: { refreshToken: strin
 
     if (!user) return false
 
-    const accessToken = signJwt({ ...user, session: _session.id }, { expiresIn: '15m' })
+    const accessToken = signJwt({ ...user, session: _session.id }, { expiresIn: '30m' })
 
     return accessToken
 }
