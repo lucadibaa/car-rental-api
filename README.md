@@ -6,6 +6,7 @@ NodeJs / express / typescript / postgreSQL / prisma
 ## User
 Registration
 Login
+Delete Profile
 Email / phone number confirmation
 Add / Edit payment method
 
