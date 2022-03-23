@@ -2,7 +2,7 @@ import { PrismaClient } from ".prisma/client"
 import { Request, Response } from "express"
 import slugify from "slugify"
 import { AddCarInput } from "../schemas/car.schema"
-import { addCar, getAllCars } from "../services/car.service"
+import { addCar, getAllCars, removeCar } from "../services/car.service"
 
 const { brand } = new PrismaClient()
 
@@ -28,6 +28,16 @@ export const addCarHandler = async (req: Request<{}, {}, AddCarInput["body"]>, r
   const slug = slugify(carBrand.name.concat(` ${model}`), { lower: true })
 
   const car = await addCar({ ...req.body, slug })
+
+  if (!car) return res.sendStatus(404)
+
+  return res.status(200).json({ success: true, car })
+}
+
+export const removeCarHandler = async (req: Request, res: Response) => {
+  const { car_id } = req.params
+
+  const car = await removeCar(Number(car_id))
 
   if (!car) return res.sendStatus(404)
 

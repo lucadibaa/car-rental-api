@@ -22,3 +22,14 @@ export const addCar = async (input: CarInput) => {
     throw new Error(err)
   }
 }
+
+export const removeCar = async (car_id: number) => {
+  try {
+    const removedCar = await car.delete({
+      where: { id: car_id }
+    })
+    return removedCar
+  } catch (err: any) {
+    throw new Error(err)
+  }
+}
