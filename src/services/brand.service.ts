@@ -22,3 +22,14 @@ export const addBrand = async (input: BrandInput) => {
         throw new Error(err)
     }
 }
+
+export const removeBrand = async (brand_id: number) => {
+    try {
+        const removedBrand = await brand.delete({
+            where: { id: brand_id }
+        })
+        return removedBrand
+    } catch (err: any) {
+        throw new Error(err)
+    }
+}

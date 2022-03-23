@@ -1,6 +1,6 @@
 import { Express } from "express"
 import { createBooking } from "./controllers/booking.controller"
-import { addBrandHandler, getAllBrandsHandler } from "./controllers/brand.controller"
+import { addBrandHandler, getAllBrandsHandler, removeBrandHandler } from "./controllers/brand.controller"
 import { addCarHandler, getAllCarsHandler, removeCarHandler } from "./controllers/car.controller"
 import { createUserSessionHandler, deleteSessionsHandler, getUserSessionsHandler, } from "./controllers/session.controller"
 import { createUserHandler, getAllUsersHandler, getUserByIdHandler, } from "./controllers/user.controller"
@@ -31,6 +31,7 @@ const routes = (app: Express) => {
   // brands
   app.get("/api/brands", getAllBrandsHandler)
   app.post("/api/brands", requireAdmin, addBrandHandler)
+  app.delete("/api/brands/:brand_id", requireAdmin, removeBrandHandler)
 }
 
 export default routes
