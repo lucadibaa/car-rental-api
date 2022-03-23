@@ -15,11 +15,18 @@ model User {
   name     String
   email    String    @unique
   password String
+  role     Role      @default(user)
   car      Car?      @relation(fields: [carId], references: [id])
   carId    Int?      @unique
   sessions Session[]
   isConfirmed Boolean
   bookings Rental[]
+}
+
+enum Role {
+  user
+  employee
+  admin
 }
 
 model Session {
