@@ -1,4 +1,4 @@
-import { object, string, TypeOf } from "zod";
+import { object, string, TypeOf } from "zod"
 
 export const createUserSchema = object({
   body: object({
@@ -12,15 +12,12 @@ export const createUserSchema = object({
       required_error: "Password is required",
     }).min(6, "Password must be at least 6 characters losng"),
   }),
-});
+})
 
 export interface UserInput {
-  name: string;
-  email: string;
-  password: string;
+  name: string
+  email: string
+  password: string
 }
 
-export type CreateUserInput = Omit<
-  TypeOf<typeof createUserSchema>,
-  "body.passwordConfirmation"
->;
+export type CreateUserInput = TypeOf<typeof createUserSchema>
