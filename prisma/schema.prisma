@@ -11,16 +11,17 @@ datasource db {
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
-  name     String
-  email    String    @unique
-  password String
-  role     Role      @default(user)
-  car      Car?      @relation(fields: [carId], references: [id])
-  carId    Int?      @unique
-  sessions Session[]
-  isConfirmed Boolean
-  bookings Rental[]
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String    @unique
+  phoneNumber String    @unique
+  password    String
+  role        Role      @default(user)
+  isConfirmed Boolean   @default(false)
+  sessions    Session[]
+  car         Car?      @relation(fields: [carId], references: [id])
+  carId       Int?      @unique
+  bookings    Rental[]
 }
 
 enum Role {
@@ -38,28 +39,29 @@ model Session {
 }
 
 model Car {
-  id      Int    @id @default(autoincrement())
-  model   String
-  owner   User?
-  brand   Brand  @relation(fields: [brandId], references: [id])
-  brandId Int
-  isAvailable Boolean
+  id          Int     @id @default(autoincrement())
+  model       String
+  isAvailable Boolean @default(true)
+  owner       User?
+  brand       Brand   @relation(fields: [brandId], references: [id])
+  brandId     Int
+  slug        String  @unique
 }
 
 model Rental {
-  id Int @id @default(autoincrement())
-  start DateTime
-  end DateTime
-  customer User? @relation(fields: [customerId], references: [id])
-  customerId Int?
-  transaction Transaction @relation(fields: [transactionId],references: [id])
-  transactionId Int
+  id            Int         @id @default(autoincrement())
+  startDate     DateTime
+  endDate       DateTime
+  customer      User?       @relation(fields: [customerId], references: [id])
+  customerId    Int?
+  transaction   Transaction @relation(fields: [transactionId], references: [id])
+  transactionId Int         @unique
 }
 
 model Transaction {
-  id Int @id @default(autoincrement())
+  id     Int     @id @default(autoincrement())
   amount Decimal
-  type String
+  type   String
   rental Rental?
 }
 

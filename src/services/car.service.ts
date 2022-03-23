@@ -1,12 +1,12 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client"
 
-const { car } = new PrismaClient();
+const { car } = new PrismaClient()
 
 export const getAllCars = async () => {
   try {
-    const cars = await car.findMany();
-    return cars;
+    const cars = await car.findMany()
+    return cars
   } catch (err: any) {
-    throw new Error(err);
+    throw new Error(err)
   }
-};
+}
