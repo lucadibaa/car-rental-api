@@ -19,11 +19,11 @@ const routes = (app: Express) => {
   app.post("/api/sessions", validate(createSessionSchema), createUserSessionHandler)
   app.delete("/api/sessions", requireUser, deleteSessionsHandler)
 
-  // // Car
-  // app.get("api/cars", getAllCarsHandler)
-
   // // Rental
-  // app.post("api/rent", requireUser, createBooking)
-}
+   app.post("api/rent", requireUser, createBooking)
+  
+  // Car
+   app.get("api/cars", getAllCarsHandler);
+};
 
-export default routes
+export default routes;

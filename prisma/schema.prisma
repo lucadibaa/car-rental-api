@@ -19,6 +19,8 @@ model User {
   car      Car?      @relation(fields: [carId], references: [id])
   carId    Int?      @unique
   sessions Session[]
+  isConfirmed Boolean
+  bookings Rental[]
 }
 
 enum Role {
@@ -41,6 +43,24 @@ model Car {
   owner   User?
   brand   Brand  @relation(fields: [brandId], references: [id])
   brandId Int
+  isAvailable Boolean
+}
+
+model Rental {
+  id Int @id @default(autoincrement())
+  start DateTime
+  end DateTime
+  customer User? @relation(fields: [customerId], references: [id])
+  customerId Int?
+  transaction Transaction @relation(fields: [transactionId],references: [id])
+  transactionId Int
+}
+
+model Transaction {
+  id Int @id @default(autoincrement())
+  amount Decimal
+  type String
+  rental Rental?
 }
 
 model Brand {
