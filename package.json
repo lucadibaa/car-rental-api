@@ -15,6 +15,7 @@
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
+    "slugify": "^1.6.5",
     "zod": "^3.14.2"
   },
   "devDependencies": {

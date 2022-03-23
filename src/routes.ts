@@ -1,7 +1,7 @@
 import { Express } from "express"
 import { createBooking } from "./controllers/booking.controller"
 import { addBrandHandler, getAllBrandsHandler } from "./controllers/brand.controller"
-import { getAllCarsHandler } from "./controllers/car.controller"
+import { addCarHandler, getAllCarsHandler } from "./controllers/car.controller"
 import { createUserSessionHandler, deleteSessionsHandler, getUserSessionsHandler, } from "./controllers/session.controller"
 import { createUserHandler, getAllUsersHandler, getUserByIdHandler, } from "./controllers/user.controller"
 import requireAdmin from "./middlewares/requireAdmin"
@@ -25,6 +25,7 @@ const routes = (app: Express) => {
 
   // cars
   app.get("/api/cars", getAllCarsHandler)
+  app.post("/api/cars", requireAdmin, addCarHandler)
 
   // brands
   app.get("/api/brands", getAllBrandsHandler)

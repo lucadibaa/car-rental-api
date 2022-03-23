@@ -14,10 +14,10 @@ export const getAllBrands = async () => {
 
 export const addBrand = async (input: BrandInput) => {
     try {
-        const brands = await brand.create({
+        const newBrand = await brand.create({
             data: input
         })
-        return brands
+        return newBrand
     } catch (err: any) {
         throw new Error(err)
     }
