@@ -1,5 +1,6 @@
 import { Express } from "express"
 import { createBooking } from "./controllers/booking.controller"
+import { getAllBrandsHandler } from "./controllers/brand.controller"
 import { getAllCarsHandler } from "./controllers/car.controller"
 import { createUserSessionHandler, deleteSessionsHandler, getUserSessionsHandler, } from "./controllers/session.controller"
 import { createUserHandler, getAllUsersHandler, getUserByIdHandler, } from "./controllers/user.controller"
@@ -24,6 +25,9 @@ const routes = (app: Express) => {
 
   // cars
   app.get("/api/cars", getAllCarsHandler)
+
+  // brands
+  app.get("/api/brands", getAllBrandsHandler)
 }
 
 export default routes
